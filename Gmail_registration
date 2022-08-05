@@ -1,0 +1,224 @@
+<html>
+    <head>
+        <title>Gmail registration page</title>
+    </head>
+
+    <body>
+        <div style="display: flex; border-radius:8px; border: 1px solid silver; padding: 25px; margin: 45px 250px 10px 250px;">
+            
+            <div>
+                <img src="/images/google_img.PNG" style="width: 80px;">
+                <div style="padding-top: 10px; font-size: x-large; padding-left: 3px;">Create your Google Account</div>
+                <div style="padding-top: 10px; font-size: large; padding-left: 4px;">to continue to Gmail</div>
+
+                <div style="padding-left: 5px; padding-top: 40px;">
+                    <input type="text" id="fName" placeholder="First name" onkeydown="validate()" style="border-radius: 3px; border: 1px solid silver; padding: 10px;"></input>
+                    <input type="text" id="lName" placeholder="Last name" onkeydown="validate()" style="border-radius: 3px; border: 1px solid silver; padding: 10px; margin-left: 5px;"></input>
+                    <div id="err1" style="font-size: 14px"></div>
+                </div>
+            
+                <div style="padding-left: 5px; padding-top: 25px;">
+                    <input type="text" id="uName" placeholder="Username" onkeydown="validate()" style="border-radius: 3px; border: 1px solid silver; padding: 10px 198px 10px 10px;"></input>
+                </div>
+
+                <div  id="err2" style="color: #5f6368 ;margin-left: 7px; font-size: 14px;">You can use letters, numbers & periods</div>
+                <div style="margin-top: 15px"> 
+                    <a onclick="autoselect()" style="color: #1a73e8; cursor: pointer; font-size: medium; margin-left: 7px;">Use my current email address instead</a>
+                </div>
+
+                <div style="padding-left: 5px; padding-top: 40px;">
+                    <input type="password" id="enter" placeholder="Password" onkeydown="validate()" style="border-radius: 3px; border: 1px solid silver; padding: 10px;"</input>
+                    <input type="password" id="confirm" placeholder="Confirm" onkeydown="validate()" style="border-radius: 3px; border: 1px solid silver; padding: 10px; margin-left: 5px;"></input>
+                </div>
+
+                <div id="err3" style="color: #5f6368 ;margin-left: 7px;font-size: 14px;">Use 8 or more characters with a mix of letters, numbers & symbols</div>
+
+                <div style="display: flex;">
+                    <div>
+                        <input type="checkbox" onclick="showpassword()" style="margin-top: 20px; margin-left: 7px; height: 18px;width: 18px;"></input>
+                    </div>
+                    <div style="margin-top: 20.5px;margin-left: 20px;">Show password</div>
+                </div>
+
+
+                <div style="margin-top: 80px; margin-bottom: 40px; display:flex;">
+                    <div><a style="color: #1a73e8; cursor: pointer; font-size: medium; padding-top: 10px; margin-left: 7px; ">Sign in instead</a></div>
+                    <div style="margin-left: 221px;"><button onclick="validate()" onkeydown="validate()" style="background-color: #1a73e8; border-radius:5px; border: 1px solid silver;cursor: pointer; font-size: medium; color: white; padding-left: 24px; padding-right: 21px; padding-top: 8px; padding-bottom: 8px;">Next</button></div>
+                </div>
+                
+            </div>
+
+            <div>
+                <img src="/images/admin_img.PNG" style="height: 200px ; width: 180px; margin-left: 80px; margin-top: 125px;">
+                <div style=" margin-top: 10px; margin-left: 80px; font-size: larger; color: grey;">One account. All of Google</div>
+                <div style=" margin-top: 1px; margin-left: 115px; font-size: larger; color: grey">working for you.</div>
+                </div>
+            </div>
+        </div>
+
+        <script> 
+        /*
+            id="fName" placeholder="First name"
+            id="lName" placeholder="Last name"
+            id="uName" placeholder="Username"
+            onclick="autoselect()"
+            id="enter" placeholder="Password"
+            id="confirm" placeholder="Confirm"
+            type="checkbox" onclick="showpassword()"
+            button onclick="validate()"
+            javascript object ==> Data in form and print in console.
+         */
+
+            function validate()
+            {
+                let fName = document.getElementById("fName").value;
+                let lName = document.getElementById("lName").value;
+                let uNameval = document.getElementById("uName").value;
+                /* console.log(uNameval.length,"uNameval.length"); */
+                let enterval = document.getElementById("enter").value;
+                let confirmval = document.getElementById("confirm").value;
+
+                if(!fName || !lName)
+                {
+                    if(!fName && !lName)
+                    {
+                        document.getElementById("err1").innerText="Enter first and last names";
+                        document.getElementById("err1").style.color="red"; 
+                        document.getElementById("fName").style.border="1px solid red"; 
+                        document.getElementById("lName").style.border="1px solid red";
+                    }  
+                    else if(lName)
+                    {
+                        if(!fName)
+                        {
+                            document.getElementById("err1").innerText="Enter first name";
+                            document.getElementById("err1").style.color="red"; 
+                            document.getElementById("fName").style.border="1px solid red"; 
+                        }
+                    }
+                    else if(fName)
+                    {
+                        if(!lName)
+                        {
+                            document.getElementById("err1").innerText="Enter last name";
+                            document.getElementById("err1").style.color="red"; 
+                            document.getElementById("lName").style.border="1px solid red";
+                        }
+                    }
+                }
+                else
+                {
+                    document.getElementById("err1").innerText="";
+                }
+
+
+                if((!uNameval) || (uNameval.length<6 || uNameval.length>30))
+                {
+                    if(!document.getElementById("uName").value)
+                    {
+                        document.getElementById("err2").innerText="Choose a Gmail address";
+                        document.getElementById("err2").style.color="red"; 
+                        document.getElementById("uName").style.border="1px solid red";
+                    }
+                    else if(uNameval.length<6 || uNameval.length>30)
+                    {
+                        document.getElementById("err2").innerText="Sorry, your username must be between 6 and 30 characters long";
+                        document.getElementById("err2").style.color="red"; 
+                        document.getElementById("uName").style.border="1px solid red";
+                    }
+                }
+                else
+                {
+                    document.getElementById("err2").innerText="";
+                }
+
+
+                if(!enterval || !confirmval || (enterval.length<8) || (enterval.length != confirmval.length))
+                {
+                    if(!document.getElementById("enter").value && !document.getElementById("confirm").value)
+                    {
+                        document.getElementById("err3").innerText="Enter a password";
+                        document.getElementById("err3").style.color="red"; 
+                        document.getElementById("enter").style.border="1px solid red";
+                    }  
+                    else if(enterval.length<8)
+                    {
+                        document.getElementById("err3").innerText="Use 8 characters or more for your password";
+                        document.getElementById("err3").style.color="red"; 
+                        document.getElementById("enter").style.border="1px solid red";
+                    }
+                    else if(confirmval)
+                    {
+                        if(!enterval)
+                        {
+                            document.getElementById("err3").innerText="Enter a password";
+                            document.getElementById("err3").style.color="red"; 
+                            document.getElementById("enter").style.border="1px solid red";
+                        }
+                    }
+                    else if(enterval)
+                    {
+                        if(!confirmval)
+                        {
+                            document.getElementById("err3").innerText="Confirm your password";
+                            document.getElementById("err3").style.color="red"; 
+                            document.getElementById("enter").style.border="1px solid red";
+                            document.getElementById("confirm").style.border="1px solid red";
+                        }
+                    }
+                    else if(enterval!=confirmval)
+                    {
+                        console.log("innnnnnnnnnn");
+                        document.getElementById("err3").innerText="Those passwords didn't match. Try again.";
+                        document.getElementById("err3").style.color="red"; 
+                        document.getElementById("enter").style.border="1px solid red"; 
+                        document.getElementById("confirm").style.border="1px solid red";
+                    }
+                    else if(enterval == confirmval)
+                    {
+                            document.getElementById("err3").innerText="";
+                    }
+                }
+                else
+                {
+                    document.getElementById("err3").innerText="";
+                }
+            }
+
+
+            function autoselect()
+            {
+                var input = document.getElementById('uName');
+                input.focus();                                      /*-- auto select --*/
+                input.select();
+            }
+            function showpassword()
+            {
+                let temp1 = document.getElementById("enter");
+                let temp2 = document.getElementById("confirm");
+
+                if(temp1.type === "password" || temp2.type === "password")
+                {
+                    if(temp1.type === "password" && temp2.type === "password")
+                    {
+                        temp1.type = "text";
+                        temp2.type = "text";
+                    }
+                    else if(!temp2.type === "password")
+                    {
+                        temp1.type = "text";
+                    }
+                    else if(!temp1.type === "password")
+                    {
+                        temp1.type = "text";
+                    }
+                }
+                else
+                {
+                    temp1.type = "password";
+                    temp2.type = "password";
+                }
+            }
+        </script>
+    </body>
+</html>
